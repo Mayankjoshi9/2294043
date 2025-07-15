@@ -1,4 +1,4 @@
-// index.js
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const { handleCreateShortUrl, handleRedirect, handleGetStats } = require('./controllers/urlController');
@@ -11,5 +11,5 @@ app.get('/shorturls/:shortcode', handleGetStats);
 app.get('/:shortcode', handleRedirect);
 
 app.listen(3000, () => {
-  console.log('🚀 Server running at http://localhost:3000');
+  console.log(' Server running at http://localhost:3000');
 });

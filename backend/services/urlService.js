@@ -1,4 +1,4 @@
-// services/urlService.js
+
 
 const urlDB = new Map(); // key: shortcode → value: { originalUrl, expiry, createdAt, clicks: [] }
 
@@ -15,7 +15,7 @@ function createShortUrl(originalUrl, validity = 30, shortcode) {
     originalUrl,
     expiry,
     createdAt,
-    clicks: [] // ← track clicks here
+    clicks: [] 
   });
 
   return { shortLink: `http://localhost:3000/${code}`, expiry };

@@ -1,4 +1,4 @@
-// utils/logger.js
+
 const axios = require('axios');
 
 const LOG_ENDPOINT = 'http://20.244.56.144/evaluation-service/logs';

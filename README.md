@@ -1,15 +1,13 @@
-Here’s a **simple and clear `README.md`** for your URL Shortener microservice with logging:
+
 
 ---
 
 ```markdown
-# 🔗 URL Shortener Microservice with Logging
+# URL Shortener Microservice with Logging
 
-This is a backend-only URL shortener microservice built in **Node.js (JavaScript)** with an external **logging middleware**.
+This is a backend-only URL shortener microservice built in Node.js (JavaScript) with an external logging middleware.
 
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 
@@ -20,34 +18,28 @@ project-root/
 │   ├── services/
 │   └── utils/
 ├── loging/
-│   └── logger.js  ← Reusable logging utility (outside backend)
+│   └── logger.js
 
 ````
 
----
+## Features
 
-## 🚀 Features
+- Shortens long URLs (with optional custom shortcode)
+- Supports URL expiry (default: 30 minutes)
+- Redirects to original URLs
+- Tracks usage statistics (clicks, timestamps, referrer, IP)
+- Sends logs to external logging service
 
-- 🔗 Shorten long URLs (with optional custom shortcode)
-- 🕓 Set expiry time (default: 30 minutes)
-- 🔁 Redirect to original URL via `/shortcode`
-- 📊 View usage stats: total clicks, referrer, timestamp, IP
-- 📝 All activity is logged via external `Log()` middleware
-
----
-
-## 📦 Tech Stack
+## Tech Stack
 
 - Node.js
 - Express.js
 - Axios (for logging)
-- In-memory store using JavaScript `Map()`
+- In-memory store using JavaScript Map
 
----
+## API Endpoints
 
-## 📌 API Endpoints
-
-### 1. **POST /shorturls**
+### POST /shorturls
 
 Create a new short URL.
 
@@ -55,8 +47,8 @@ Create a new short URL.
 ```json
 {
   "url": "https://example.com",
-  "validity": 15,             // optional (minutes)
-  "shortcode": "custom123"    // optional
+  "validity": 15,
+  "shortcode": "custom123"
 }
 ````
 
@@ -69,15 +61,11 @@ Create a new short URL.
 }
 ```
 
----
+### GET /\:shortcode
 
-### 2. **GET /\:shortcode**
+Redirects to the original long URL.
 
-Redirects to the original long URL if valid.
-
----
-
-### 3. **GET /shorturls/\:shortcode**
+### GET /shorturls/\:shortcode
 
 Returns statistics for the shortcode.
 
@@ -99,9 +87,7 @@ Returns statistics for the shortcode.
 }
 ```
 
----
-
-## 🛠 Logging Setup
+## Logging
 
 Located in `loging/logger.js`.
 
@@ -111,34 +97,29 @@ Located in `loging/logger.js`.
 Log("backend", "info", "controller", "Short URL created");
 ```
 
-**Sends logs to:**
+Logs are sent to:
 
 ```
 POST http://20.244.56.144/evaluation-service/logs
 ```
 
-With headers:
+With required header:
 
-```http
+```
 Authorization: Bearer <access_token>
 ```
 
----
-
-## 📦 Install & Run
+## Setup & Run
 
 ```bash
 npm install
 node backend/index.js
 ```
 
----
+## Notes
 
-## points
-
-* No database used – in-memory only (for evaluation).
-* Logging utility is reusable and lives outside the backend.
-* All logs are authenticated using access token.
-
+* No database used – temporary in-memory store
+* Logging middleware lives in a separate folder (`loging`)
+* Logs are sent using the provided access token
 
 

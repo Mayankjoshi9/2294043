@@ -1,4 +1,4 @@
-// controllers/urlController.js
+
 const Log = require('../../log/logger.js');
 const { createShortUrl, getOriginalUrl,getShortUrlStats} = require('../services/urlService');
 
@@ -25,7 +25,7 @@ async function handleRedirect(req, res) {
     const clickInfo = {
       timestamp: new Date(),
       referrer: req.get('referer') || 'unknown',
-      location: req.ip // you can use geo-IP services for actual country if needed
+      location: req.ip 
     };
 
     const longUrl = getOriginalUrl(code, clickInfo);
@@ -39,7 +39,7 @@ async function handleRedirect(req, res) {
 }
 
 
-// controllers/urlController.js
+
 async function handleGetStats(req, res) {
   try {
     const code = req.params.shortcode;
